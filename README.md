@@ -138,6 +138,10 @@ All the parameters (Temperature, CO, and if someone is sent to adjust temperatur
 
 <img src="https://github.com/JVALPASS/IoT_Bar/blob/main/doc/Node_Red_UI.png"></br>
 
-https://user-images.githubusercontent.com/51170999/190873743-dd9a1380-730b-4ce6-a6db-bdca1f85a2d7.mp4
+
+
+https://user-images.githubusercontent.com/51170999/190873959-02c8d5c5-6042-42f0-a51e-15e9077aad1d.mp4
+
+
 
 
