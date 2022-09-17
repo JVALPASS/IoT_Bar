@@ -134,6 +134,6 @@ From two different terminals, start the docker to run RabbitMQ and Nuclio with t
  
 After all these steps, you are able to send random values about CO and temperature using Node-Red
 
-All the changes about Temperature and CO can be seen in real-time on user interface developed with Node-Red
+All the parameters (Temperature, CO, and if someone is sent to adjust temperature) can be seen in real-time on user interface developed with Node-Red
 
 <img src="https://github.com/JVALPASS/IoT_Bar/blob/main/doc/Node_Red_UI.png"></br>
