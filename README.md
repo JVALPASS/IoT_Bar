@@ -128,3 +128,11 @@ From two different terminals, start the docker to run RabbitMQ and Nuclio with t
    ```
    node src/telegram_bot.js
    ```
+* Start Telegram Bot Client:
+   Now, you can go to the bot you've just created on Telegram and run it.
+   The bot will warn you not to stop it to continue receiving updates on the Enviromental Parameters.
+* Node-Red:
+   * Type 'localhost:1880' on your browser to open the homepage of Node-Red
+   * Double Click on Gas Node and click on enable
+   * Double Click on Temperature Node and click on enable
+After all these steps, you are able to send random values about CO and temperature using Node-Red
