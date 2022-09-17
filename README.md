@@ -10,7 +10,7 @@ This project is designed for building a computing architecture, based on open-so
 ## Architeture
 As previously mentioned, one of the phases of the project is to simulate the sending of data by the Iot sensors (in this case a temperature sensor, and a CO sensor).
 
-<img src="https://github.com/JVALPASS/Secure_Child_Seat/blob/main/assets/webhooks.png" width="500" height="300"></br>
+<img src="https://github.com/JVALPASS/IoT_Bar/blob/main/doc/architeture_IoT_Bar.png" width="500" height="300"></br>
 
 ### Temperature sensor 
 Can be simulated in this way:
