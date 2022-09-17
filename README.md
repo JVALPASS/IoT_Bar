@@ -85,6 +85,9 @@ $ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 $ sudo apt install nodejs
 $ sudo npm install -g --unsafe-perm node-red
 ```
+Install Node-RED-Dashboard
+Type 'localhost:1880' on your browser to open the homepage of Node-Red, use the Menu - Manage palette option and search for node-red-dashboard and install it
+
 Start [Node-Red](https://nodered.org/docs/getting-started/local).
 ## Install Other Dependencies
   ```
