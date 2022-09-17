@@ -133,6 +133,7 @@ From two different terminals, start the docker to run RabbitMQ and Nuclio with t
    The bot will warn you not to stop it to continue receiving updates on the Enviromental Parameters.
 * Node-Red:
    * Type 'localhost:1880' on your browser to open the homepage of Node-Red
+   * Select option in the menu Import -> uploading a flow JSON file in 'Node-Red/flows.json'
    * Double Click on Gas Node and click on enable
    * Double Click on Temperature Node and click on enable
    * Type 'localhost:1880/ui' on your browser to open the UI of Node-Red
