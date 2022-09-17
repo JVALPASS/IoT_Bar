@@ -5,7 +5,8 @@ The idea is to simulate :
  * A temperature sensor placed in the bar to warn the user when the temperature of the eneviroment is too low or too high. When the user is notified, he can choose        what to do from a Telegram bot, which is one thing among the following:
     * Enable actuator that automatic decrease temperature
     * Warn someone to adjust temperature
-  * A GAS sensor placed in the bar to warn the user when the CO in the enviroment is too high. When the user is notified, will be enabled an an actuator that will         clean the air and so decrease the CO.
+  * A GAS sensor placed in the bar to warn the user when the CO in the enviroment is too high. When the user is notified, will be enabled an an actuator that will         clean the air and so decrease the CO. <br/>
+
 Obviously, all these things are simulated because, right now, I am not in possession of these Iot devices.
 This project is designed for building a computing architecture, based on open-source software, that exploit Function-as-service model in the context of IoT. The idea is provides a system which allows as in Amazon Aws or Microsoft Azure, and so on, to deploy functions that are trigged by events generated from small devices such as sensors and mobile (IoT devices), commonly these devices communicates using message-passing, in particular on dedicated protocol such as MQTT.<br/>
 ## Architeture
