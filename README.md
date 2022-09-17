@@ -9,10 +9,14 @@ Obviously, all these things are simulated because, right now, I am not in posses
 This project is designed for building a computing architecture, based on open-source software, that exploit Function-as-service model in the context of IoT. The idea is provides a system which allows as in Amazon Aws or Microsoft Azure, and so on, to deploy functions that are trigged by events generated from small devices such as sensors and mobile (IoT devices), commonly these devices communicates using message-passing, in particular on dedicated protocol such as MQTT.<br/>
 ## Architeture
 As previously mentioned, one of the phases of the project is to simulate the sending of data by the Iot sensors (in this case a temperature sensor, and a CO sensor).
+
+Immagine
+
 ### Temperature sensor 
 Can be simulated in this way:
   * Using the Node-Red in particular using Inject Node plus Javascript function Node, they permit to generate random Temperature value every 10 seconds
      *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues 'iot/sensors/temperature' and 'iot/logs/temp          of RabbitMQ.
+     
 Immagine
 
 When a value is published in this queue, a function on Nuclio (consumetemperature) is triggered, which processes this value. This function checks if the temperature is ≤16 or > 25 and, if so, publish a new message in the queue 'iot/alerts/temp'.
@@ -24,23 +28,28 @@ The result of the changing of temperature are sent on Topic “iot/logs/temp”
 ### CO sensor 
 Can be simulated in this way:
   * Using the Node-Red in particular using Inject Node plus Javascript function Node, they permit to generate random CO (carbon monoxide) value every 5 seconds
-     *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues 'iot/sensors/CO' and 'iot/logs/temp'             of RabbitMQ.
+     *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues 'iot/sensors/CO' and 'iot/logs/CO'                   of RabbitMQ.
+
 Immagine
-When a value is published in this queue, a function on Nuclio (consumeco) is triggered, which processes this value. This function checks if the temperature is > 25 and, if so, publish a new message in the queue 'iot/alerts/CO'.
+
+When a value is published in this queue, a function on Nuclio (consumeco) is triggered, which processes this value. This function checks if the CO is > 25 and, if so, publish a new message in the queue 'iot/alerts/CO'.
 At this point, inside telegram_bot.js the publication in iot/alerts/CO is intercepted and a message is sent to the user thanks to a Telegram bot.
 The message advertise the user that an air-cleaner is enabled, will automatically decrease the CO
 The result of the changing of CO are sent on Topic “iot/logs/CO”
+
 Immagine
+
 ## Prerequisites
 * OS:
-    * Ubuntu 18.04 LTS or more recent
+    * Ubuntu 25.04 LTS or more recent
 * Software:
     * Docker and Docker Compose (Application containers engine)
     * Nuclio (Serverless computing provider)
     * RabbitMQ (AMQP and MQTT message broker)
     * Node.js
+    * Node-Red
 ## Installation
-This project is made on top of one local machine an Linux Ubuntu 20.04 LTS LTS machine.
+This project is made on top of one local machine an Linux Ubuntu 20.04 LTS machine.
 ## Docker
 Docker is a tool designed to make it easier to create, deploy, and run applications by using containers.
 **Install Docker using the Docker CE installation [GUIDE](https://docs.docker.com/engine/install/ubuntu/).**<br/>
@@ -73,30 +82,38 @@ Install Docker Compose using the Docker Compose installation [guide](https://doc
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
-## Nuclio
-Nuclio (High-Performance Serverless event and data processing platform) is a new "serverless" project, derived from Iguazio's elastic data life-cycle management service for high-performance events and data processing. The simplest way to explore Nuclio is to run its graphical user interface (GUI) of the Nuclio dashboard.
-**TIP** The Nuclio documentation is available at this [link].
-
-Start [Nuclio](https://github.com/nuclio/nuclio) using a docker container.
+## Node-Red
+Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
+It provides a browser-based editor that makes it easy to wire together flows using the wide range of nodes in the palette that can be deployed to its runtime in a single-click.
+Install Node-Red
 ```
-$ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64
+$ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+$ sudo apt install nodejs
+$ sudo npm install -g --unsafe-perm node-red
 ```
-## RabbitMQ
-RabbitMQ is lightweight and easy to deploy on premises and in the cloud. It supports multiple messaging protocols. RabbitMQ can be deployed in distributed and federated configurations to meet high-scale, high-availability requirements.
-
-Start [RabbitMQ](https://www.rabbitmq.com/) instance with MQTT enabled using docker.
-```
-$ docker run -p 9000:15672  -p 1883:1883 -p 5672:5672  cyrilix/rabbitmq-mqtt 
-```
-## IFTTT MESSAGE TRIGGER
-Create an [IFTT](https://ifttt.com/) account.
-Then you need to create a new Applet:</br>
-- Set this name to Event Name: **"Magnet disconnected"**
-- Use WebHooks in **if** and select **"receive a web request with a JSON paylod"** section:</br>
-<img src="https://github.com/JVALPASS/Secure_Child_Seat/blob/main/assets/webhooks.png" width="500" height="300"></br>
-- Select **"SMS"** in **then** :</br>
-<img src="https://github.com/JVALPASS/Secure_Child_Seat/blob/main/assets/overviewWebhooks.png" width="500" height="350"></br>
-- Set the parameter in the SMS:</br>
-<img src="https://github.com/JVALPASS/Secure_Child_Seat/blob/main/assets/smsWebhooks.png" width="500" height="350"></br>
-- Remember to connect the service:</br>
-<img src="https://github.com/JVALPASS/Secure_Child_Seat/blob/main/assets/resultsWebooks.png" width="500" height="350"></br>
+Start [Node-Red](https://nodered.org/docs/getting-started/local).
+## Install Other Dependencies
+  ```
+  cd src/telegram_bot.js
+  npm init
+  npm install telegraf
+  npm install moment
+  npm install dotenv
+  npm install mqtt
+  ```
+## Getting started
+From two different terminals, start the docker to run RabbitMQ and Nuclio with these following commands:
+* Docker RabbitMQ:
+   ```
+   $ docker run -p 9000:15672  -p 1883:1883 -p 5672:5672  cyrilix/rabbitmq-mqtt
+   ```
+* Docker Nuclio:
+   ```
+   $ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64
+   ```
+* Update and deploy Functions:
+   * Type 'localhost:8070' on your browser to open the homepage of Nuclio;
+   * Create new project and call it 'IoT_Bar';
+   * Press 'Create function', 'Import' and upload the two functions that are in the yaml_functions folder;
+   * In both, change the already present IP with your IP;
+   Press 'Deploy'.
