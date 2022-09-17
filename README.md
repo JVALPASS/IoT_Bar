@@ -117,3 +117,14 @@ From two different terminals, start the docker to run RabbitMQ and Nuclio with t
    * Press 'Create function', 'Import' and upload the two functions that are in the yaml_functions folder;
    * In both, change the already present IP with your IP;
    Press 'Deploy'.
+* Create personal Telegram Bot:
+   * Open Telegram and search for BotFather.
+   * Press start and type /newbot.
+   * Give it a name and a unique id (BotFather will help you).
+   * Copy and paste the Token that BotFather gave you in the Telegraf constructor in .env file;
+* Start Telegram Bot's Server:
+   Open again .env file and insert your IP address instead of 'INSERT_YOUR_IP'.
+   Open terminal and type:
+   ```
+   node src/telegram_bot.js
+   ```
