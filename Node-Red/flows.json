@@ -1,0 +1,590 @@
+[
+    {
+        "id": "0a23f01229f1fda1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7620d92669f43a4c",
+        "type": "group",
+        "z": "0a23f01229f1fda1",
+        "name": "CO_GROUP",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "4298bbdf6e9b3438",
+            "dc67d30e3c11d8b5",
+            "e8ebcf1eb3249154",
+            "5a19e236da8cedb3",
+            "2facb32e5a4fdd4b",
+            "9b45c51648e762c4"
+        ],
+        "x": 68,
+        "y": 53,
+        "w": 798,
+        "h": 288
+    },
+    {
+        "id": "254b3a7aa24457c3",
+        "type": "group",
+        "z": "0a23f01229f1fda1",
+        "name": "Temperature",
+        "style": {
+            "stroke": "#ff0000",
+            "label": true,
+            "color": "#ff0000"
+        },
+        "nodes": [
+            "7f86967e6d8d4510",
+            "8de7c578a8183d70",
+            "2f6296498b03878b",
+            "7793130c99f5135e",
+            "2210333bb474fe17",
+            "1d91baf145ea231b",
+            "56104973e993f672",
+            "e96ccf6f065cb53d",
+            "3085b2079b092fad",
+            "7a287cc2a9c1e7a5",
+            "a18db5bb560437fd"
+        ],
+        "x": 76,
+        "y": 379,
+        "w": 930,
+        "h": 482
+    },
+    {
+        "id": "a18db5bb560437fd",
+        "type": "group",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "Sensor_Temperature",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "80b797430a5ddd83",
+            "b4846239ed39fac1"
+        ],
+        "x": 102,
+        "y": 439,
+        "w": 464,
+        "h": 102
+    },
+    {
+        "id": "9b45c51648e762c4",
+        "type": "group",
+        "z": "0a23f01229f1fda1",
+        "g": "7620d92669f43a4c",
+        "name": "Sensor_Gas",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "7114f5784c34fa59",
+            "b2b45be6d551e5d2"
+        ],
+        "x": 94,
+        "y": 79,
+        "w": 512,
+        "h": 82
+    },
+    {
+        "id": "7f86967e6d8d4510",
+        "type": "ui_gauge",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "group": "09a2d507b629d230",
+        "order": 0,
+        "width": "10",
+        "height": "6",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "C°",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#ef2929",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": "16",
+        "seg2": "25",
+        "className": "",
+        "x": 470,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "4298bbdf6e9b3438",
+        "type": "debug",
+        "z": "0a23f01229f1fda1",
+        "g": "7620d92669f43a4c",
+        "name": "CO",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8de7c578a8183d70",
+        "type": "mqtt in",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "topic": "iot/logs/temp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "9d9ec2f07b5cee9d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 660,
+        "wires": [
+            [
+                "7f86967e6d8d4510"
+            ]
+        ]
+    },
+    {
+        "id": "7114f5784c34fa59",
+        "type": "inject",
+        "z": "0a23f01229f1fda1",
+        "d": true,
+        "g": "9b45c51648e762c4",
+        "name": "CO",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "b2b45be6d551e5d2"
+            ]
+        ]
+    },
+    {
+        "id": "b2b45be6d551e5d2",
+        "type": "function",
+        "z": "0a23f01229f1fda1",
+        "g": "9b45c51648e762c4",
+        "name": "random_CO",
+        "func": "msg.payload = Math.round(Math.random()*60);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "e8ebcf1eb3249154",
+                "2facb32e5a4fdd4b"
+            ]
+        ]
+    },
+    {
+        "id": "dc67d30e3c11d8b5",
+        "type": "ui_chart",
+        "z": "0a23f01229f1fda1",
+        "g": "7620d92669f43a4c",
+        "name": "",
+        "group": "09a2d507b629d230",
+        "order": 2,
+        "width": "11",
+        "height": "6",
+        "label": "Carbon Monoxide PPM",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "60",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 590,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8ebcf1eb3249154",
+        "type": "mqtt out",
+        "z": "0a23f01229f1fda1",
+        "g": "7620d92669f43a4c",
+        "name": "",
+        "topic": "iot/sensors/CO",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d9ec2f07b5cee9d",
+        "x": 760,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5a19e236da8cedb3",
+        "type": "mqtt in",
+        "z": "0a23f01229f1fda1",
+        "g": "7620d92669f43a4c",
+        "name": "",
+        "topic": "iot/logs/CO",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9d9ec2f07b5cee9d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "dc67d30e3c11d8b5",
+                "4298bbdf6e9b3438"
+            ]
+        ]
+    },
+    {
+        "id": "80b797430a5ddd83",
+        "type": "function",
+        "z": "0a23f01229f1fda1",
+        "g": "a18db5bb560437fd",
+        "name": "random_Temp",
+        "func": "msg.payload = Math.round(Math.random()*40);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "2f6296498b03878b",
+                "7793130c99f5135e",
+                "7a287cc2a9c1e7a5"
+            ]
+        ]
+    },
+    {
+        "id": "2f6296498b03878b",
+        "type": "debug",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "Temperature",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 682,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "7793130c99f5135e",
+        "type": "mqtt out",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "topic": "iot/sensors/temperature",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d9ec2f07b5cee9d",
+        "x": 750,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2210333bb474fe17",
+        "type": "ui_switch",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "label": "Temperature Handled By Employee",
+        "tooltip": "",
+        "group": "09a2d507b629d230",
+        "order": 3,
+        "width": "10",
+        "height": "2",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 840,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d91baf145ea231b",
+        "type": "mqtt in",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "topic": "iot/logs/handle",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "9d9ec2f07b5cee9d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 530,
+        "y": 680,
+        "wires": [
+            [
+                "2210333bb474fe17",
+                "56104973e993f672"
+            ]
+        ]
+    },
+    {
+        "id": "56104973e993f672",
+        "type": "debug",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "e96ccf6f065cb53d",
+        "type": "mqtt in",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "topic": "iot/alerts/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9d9ec2f07b5cee9d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 370,
+        "y": 760,
+        "wires": [
+            [
+                "3085b2079b092fad"
+            ]
+        ]
+    },
+    {
+        "id": "3085b2079b092fad",
+        "type": "debug",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "7a287cc2a9c1e7a5",
+        "type": "mqtt out",
+        "z": "0a23f01229f1fda1",
+        "g": "254b3a7aa24457c3",
+        "name": "",
+        "topic": "iot/logs/temp",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d9ec2f07b5cee9d",
+        "x": 750,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "2facb32e5a4fdd4b",
+        "type": "mqtt out",
+        "z": "0a23f01229f1fda1",
+        "g": "7620d92669f43a4c",
+        "name": "",
+        "topic": "iot/logs/CO",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9d9ec2f07b5cee9d",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b4846239ed39fac1",
+        "type": "inject",
+        "z": "0a23f01229f1fda1",
+        "d": true,
+        "g": "a18db5bb560437fd",
+        "name": "Temperature",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 228,
+        "y": 500,
+        "wires": [
+            [
+                "80b797430a5ddd83"
+            ]
+        ]
+    },
+    {
+        "id": "09a2d507b629d230",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "0678615c9b5592c2",
+        "order": 1,
+        "disp": true,
+        "width": "21",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "9d9ec2f07b5cee9d",
+        "type": "mqtt-broker",
+        "name": "mqtt_1",
+        "broker": "192.168.1.14",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0678615c9b5592c2",
+        "type": "ui_tab",
+        "name": "Home_bar",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
