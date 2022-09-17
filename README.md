@@ -135,6 +135,6 @@ From two different terminals, start the docker to run RabbitMQ and Nuclio with t
    * Type 'localhost:1880' on your browser to open the homepage of Node-Red
    * Double Click on Gas Node and click on enable
    * Double Click on Temperature Node and click on enable
-   * 
+   * Type 'localhost:1880/ui' on your browser to open the UI of Node-Red
+ 
 After all these steps, you are able to send random values about CO and temperature using Node-Red
-Metter UI  guida per acceder
