@@ -18,7 +18,7 @@ Can be simulated in this way:
      *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues 'iot/sensors/temperature' and 'iot/logs/temp          of RabbitMQ.
      
 
-<img src="https://github.com/JVALPASS/IoT_Bar/blob/main/doc/Sensor_Temperature.png"></br>
+<img src="https://github.com/JVALPASS/IoT_Bar/blob/main/doc/Sensor_Temperature.png" width="500" height="300"></br>
 
 When a value is published in this queue, a function on Nuclio (consumetemperature) is triggered, which processes this value. This function checks if the temperature is ≤16 or > 25 and, if so, publish a new message in the queue 'iot/alerts/temp'.
 At this point, inside telegram_bot.js the publication in iot/alerts/temp is intercepted and a message is sent to the user thanks to a Telegram bot.
