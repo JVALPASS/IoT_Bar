@@ -1,6 +1,7 @@
 ## IoT_Bar
 IoT_Bar is a project that wants to show the potential of the IoT and the Serverless approach for make our lives easier, the goal is built an IOT system that monitor the Temperature and the CO (carbon monoxide), and modify them when they do not meet the requirements <br/>
-The idea is to simulate 
+
+The idea is to simulate :
  * A temperature sensor placed in the bar to warn the user when the temperature of the eneviroment is too low or too high. When the user is notified, he can choose        what to do from a Telegram bot, which is one thing among the following:
     * Enable actuator that automatic decrease temperature
     * Warn someone to adjust temperature
