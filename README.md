@@ -142,7 +142,7 @@ All the parameters (Temperature, CO, and if someone is sent to adjust temperatur
 
 
 
-https://user-images.githubusercontent.com/51170999/190876651-dbfd5d0f-e6fa-40fc-b0d6-01a0de9df6a1.mp4
+https://user-images.githubusercontent.com/51170999/190876651-dbfd5d0f-e6fa-40fc-b0d6-01a0de9df6a1.mp4 width="500" height="350"
 
 
 
