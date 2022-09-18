@@ -19,8 +19,8 @@ Can be simulated in this way:
   * Using the Node-Red in particular using Inject Node plus Javascript function Node, they permit to generate random Temperature value every 10 seconds
      *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues **iot/sensors/temperature** and               **iot/logs/temp** of RabbitMQ.
      
-When a value is published in this queue, a function on Nuclio (consumetemperature) is triggered, which processes this value. This function checks if the temperature is ≤16 or > 25 and, if so, publish a new message in the queue 'iot/alerts/temp'.
-At this point, inside telegram_bot.js the publication in iot/alerts/temp is intercepted and a message is sent to the user thanks to a Telegram bot.
+When a value is published in this queue, a function on Nuclio (consumetemperature) is triggered, which processes this value. This function checks if the temperature is ≤16 or > 25 and, if so, publish a new message in the queue **iot/alerts/temp**.
+At this point, inside telegram_bot.js the publication in **iot/alerts/temp** is intercepted and a message is sent to the user thanks to a Telegram bot.
 The user chooses what to do:
  * Enable actuator that automatic decrease temperature
  * Send someone to adjust temperature, publishing a message Boolean with value true to the Topic “iot/logs/handle”
@@ -28,12 +28,12 @@ The result of the changing of temperature are sent on Topic “iot/logs/temp”
 ### CO sensor 
 Can be simulated in this way:
   * Using the Node-Red in particular using Inject Node plus Javascript function Node, they permit to generate random CO (carbon monoxide) value every 5 seconds
-     *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues 'iot/sensors/CO' and 'iot/logs/CO'                   of RabbitMQ.
+     *  The data is an integer value between 0 and 40 the temperature of the Bar. This value is published in these queues **iot/sensors/CO** and **iot/logs/CO**                   of RabbitMQ.
    
-When a value is published in this queue, a function on Nuclio (consumeco) is triggered, which processes this value. This function checks if the CO is > 25 and, if so, publish a new message in the queue 'iot/alerts/CO'.
-At this point, inside telegram_bot.js the publication in iot/alerts/CO is intercepted and a message is sent to the user thanks to a Telegram bot.
+When a value is published in this queue, a function on Nuclio (consumeco) is triggered, which processes this value. This function checks if the CO is > 25 and, if so, publish a new message in the queue **iot/alerts/CO**.
+At this point, inside telegram_bot.js the publication in **iot/alerts/CO** is intercepted and a message is sent to the user thanks to a Telegram bot.
 The message advertise the user that an air-cleaner is enabled, will automatically decrease the CO
-The result of the changing of CO are sent on Topic “iot/logs/CO”
+The result of the changing of CO are sent on Topic **iot/logs/CO**
 
 ## Prerequisites
 * OS:
