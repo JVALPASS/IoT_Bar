@@ -23,8 +23,8 @@ When a value is published in this queue, a function on Nuclio (consumetemperatur
 At this point, inside telegram_bot.js the publication in **iot/alerts/temp** is intercepted and a message is sent to the user thanks to a Telegram bot.
 The user chooses what to do:
  * Enable actuator that automatic decrease temperature
- * Send someone to adjust temperature, publishing a message Boolean with value true to the Topic “iot/logs/handle”
-The result of the changing of temperature are sent on Topic “iot/logs/temp”
+ * Send someone to adjust temperature, publishing a message Boolean with value true to the Topic **iot/logs/handle**
+The result of the changing of temperature are sent on Topic **iot/logs/temp**
 ### CO sensor 
 Can be simulated in this way:
   * Using the Node-Red in particular using Inject Node plus Javascript function Node, they permit to generate random CO (carbon monoxide) value every 5 seconds
