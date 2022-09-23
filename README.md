@@ -78,19 +78,6 @@ Install Docker Compose using the Docker Compose installation [guide](https://doc
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
-## Node-Red
-Node-RED is a programming tool for wiring together hardware devices, APIs and online services in new and interesting ways.
-It provides a browser-based editor that makes it easy to wire together flows using the wide range of nodes in the palette that can be deployed to its runtime in a single-click.
-Install Node-Red
-```
-$ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-$ sudo apt install nodejs
-$ sudo npm install -g --unsafe-perm node-red
-```
-Install Node-RED-Dashboard
-Type 'localhost:1880' on your browser to open the homepage of Node-Red, use the Menu - Manage palette option and search for node-red-dashboard and install it
-
-Start [Node-Red](https://nodered.org/docs/getting-started/local).
 ## Install Other Dependencies
   ```
   cd src/telegram_bot.js
@@ -101,7 +88,7 @@ Start [Node-Red](https://nodered.org/docs/getting-started/local).
   npm install mqtt
   ```
 ## Getting started
-From two different terminals, start the docker to run RabbitMQ and Nuclio with these following commands:
+From two different terminals, start the docker to run RabbitMQ, Nuclio, Node-Red with these following commands:
 * Docker RabbitMQ:
    ```
    $ docker run -p 9000:15672  -p 1883:1883 -p 5672:5672  cyrilix/rabbitmq-mqtt
@@ -110,6 +97,12 @@ From two different terminals, start the docker to run RabbitMQ and Nuclio with t
    ```
    $ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64
    ```
+* Docker Node-Red:
+   ```
+   $ docker run -it -p 1880:1880 --name mynodered nodered/node-red
+   ```
+   Install Node-RED-Dashboard
+   Type 'localhost:1880' on your browser to open the homepage of Node-Red, use the Menu - Manage palette option and search for node-red-dashboard and install it
 * Update and deploy Functions:
    * Type 'localhost:8070' on your browser to open the homepage of Nuclio;
    * Create new project and call it 'IoT_Bar';
